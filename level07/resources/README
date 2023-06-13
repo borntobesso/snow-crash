@@ -1,0 +1,5 @@
+on inspecting the executable with dogbolt.org, we see that the program getenv("LOGNAME") and then it echos its value using system() call.
+we can manipulate the value of the environment variable so that it runs the getflag binary.
+To set the environment variable to a literal string "$(getflag)", we use single quotes to preserve the literal value.
+LOGNAME='$(getflag)' ./level07
+on the running time of program, it will retrieve the value of the LOGNAME which is "$(getflag)" and then it runs 'echo $(getflag)', only to 'evaluate' the command in $() sytax and runs getflag binary.

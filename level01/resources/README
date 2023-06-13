@@ -1,0 +1,6 @@
+cat ~/etc/passwd
+we can see the flag01's encrypted password(42hDRfypTqqnw) directly (otherwise 'x'. The password hash and password expiry and so on.. are saved in /etc/shadow in encrypted form)
+we can use John the Ripper (JtR) which is a popular password-cracking tool. 
+install John (https://github.com/openwall/john/blob/bleeding-jumbo/doc/INSTALL)
+run ../run/john [file with password to decrypt]
+abcdefg

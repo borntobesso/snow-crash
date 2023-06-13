@@ -1,0 +1,10 @@
+Inspecting the binary and the token file which contains some imprintable characters, we see that the program returns a modified string with certain logics
+
+With a couple of tries we discover that the 'encryption' logic is to add 'i' offset to the original [i]th character.
+
+So we write a mini c program which 'decrypts' this modifies string substracting 'i' offsets from the [i]th characters.
+
+The token file was actually a result of the level09 binary,
+so we run a.out $(cat token)
+
+the flag is: f3iji1ju5yuevaus41q1afiuq

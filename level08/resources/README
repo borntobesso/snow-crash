@@ -1,0 +1,8 @@
+on inspecting the excutable, we see that the program expects a file and prints the content, except the files with name includint 'token'.
+We suppose that the given file 'token' contains the flag.
+As we don't have permission to the file, we cannot simply change the file name.
+Alternatively, we can create a symbolic link to this file and give it to the program
+ln -s ~/token /tmp/exploit
+IMPORTANT when you give the path to the target file it has to be an absolute path
+./level08 /tmp/exploit
+quif5eloekouj29ke0vouxean

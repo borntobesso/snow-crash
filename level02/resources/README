@@ -1,0 +1,9 @@
+secure copy the .pcap file using command `scp -p 4242 level02@[ip_address]:~/level02.pcap .`
+
+launch the script to run wireshark with the copy of .pcap file
+
+analyze -> follow -> TCP stream (show as ASCII)
+
+non-printable character : find the corresponding hexadacimal in the data
+
+recomposed password : ft_waNDReL0L
