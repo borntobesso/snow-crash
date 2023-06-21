@@ -1,0 +1,13 @@
+On inspecting the .lua script, we see that the program listens incoming connection and checks the password via popen() function, in a subprocess.
+
+In this sub-process, it uses echo to pipe the input password into sha1sum command.
+
+To exploit this, we can send an input which will run as a command using command substitution.
+
+First we need to connect to the server into the given port by the program using nc:
+nc 127.0.0.1 5151
+
+Then in the password prompt we type:
+$(getflag > /tmp/flag)
+
+A file containing the flag is created in /tmp!

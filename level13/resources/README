@@ -1,0 +1,11 @@
+the binary expects the UID of 4242 which does not exist (cat /etc/passwd | grep 4242)
+
+we can trick the return value of getuid()
+
+intercepting the register value during the runtime with gdb
+
+to identify the memory address for the getuid() function: disas main
+
+make a breakpoint to stop the process the moment of comparing values: b *[address] then `run`
+
+on break point we can change the value of eax with command set: set $eax=[value] then continue with `next`

@@ -1,0 +1,29 @@
+On inspection of the binary of getflag program, we see that 
+it returns the token based on the return value of the getuid() system call.
+
+We can think of overriding this value once again.
+
+gdb ./level14
+disas main
+
+b *[address of comparing code after getuid()]
+
+but on running, we encounter a message that says that we shouldn't reverse it.
+
+we reinvestigate the code and we see that it checks if we 'reverse' the code with the ptrace() code. If the ptrace() return value is less than 0, the program exits with the error message.
+
+So we need to override also the value after the ptrace() call.
+
+To do this, we need to set 2 breakpoints in total.
+
+gdb ./level14
+
+b *[address after the ptrace() call]
+b *[address after the getuid() call, the moment of cmp]
+
+run
+
+set $eax=0
+continue
+set $eax=[3014 which is the UID of user flag14, in hexadecimal : 0xbc6]
+continue

