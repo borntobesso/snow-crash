@@ -8,7 +8,7 @@ On a terminal of a host, we run 'nc -lk 6969' and we wait for some incoming info
 
 The binary checks if we have proper right to the file with access() and then open() the file.
 
-A race condition exploit takes advantage of the timing issues (in this exercize, the timing between the access() and the open() call) to manipulate the intended behavior of a program and gain unauthorized access or privilegesi.
+A race condition exploit takes advantage of the timing issues (in this exercize, the timing between the access() and the open() call) to manipulate the intended behavior of a program and gain unauthorized access or privileges.
 -> Time of Check to Time of Use (TOCTTOU)
 
 To exploit this in-between timing, we can create a symbolic link which changes its state constantly, pointing to two different files : 1) a file that we have permission to read and write 2) the 'token' file that is out interest but to which we don't have permission. 
